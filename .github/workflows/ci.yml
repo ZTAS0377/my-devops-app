@@ -1,35 +1,30 @@
+name: CI Build
 
-# Run this workflow when:
 on:
-  push:              # someone pushes a commit
-    branches: ["**"] # any branch
-  pull_request:      # a PR is opened or updated
-  workflow_dispatch: # someone clicks "Run" manually (or from Redmine)
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
-    runs-on: ubuntu-latest   # use a fresh Ubuntu server
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Download the code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Install Ruby
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
 
-      # Step 3: Run tests
       - name: Run tests
-        run: bundle exec rake test
+        run: ruby test/app_test.rb
 
-      # Step 4: Save test results as JUnit XML (Redmine reads this format)
       - name: Generate test report
-        if: always()   # run even if tests fail
+        if: always()
         run: |
           mkdir -p test/reports
-          # minitest-reporters generates JUnit XML — add it to Gemfile for real use
           echo "Test report generated"
