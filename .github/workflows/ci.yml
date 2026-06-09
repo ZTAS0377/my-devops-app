@@ -30,3 +30,4 @@ jobs:
           echo "Test report generated"
           echo "hello buddy"
           echo "hello world" 
+          echo "hello world" > test/reports/test_report.txt
