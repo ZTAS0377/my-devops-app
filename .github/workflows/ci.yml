@@ -2,7 +2,7 @@ name: CI Build
 
 on:
   push:
-    branches: ["**"]
+    branches: ["main"]
   pull_request:
   workflow_dispatch:
 
@@ -32,13 +32,4 @@ jobs:
           echo "hello world"
           echo "hello world" > test/reports/test_report.txt
 
-      - name: Deploy to Server
-        if: github.ref == 'refs/heads/main'
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /opt
-            sudo mkdir -p test
+
