@@ -31,3 +31,6 @@ jobs:
           echo "hello buddy"
           echo "hello world" 
           echo "hello world" > test/reports/test_report.txt
+          echo "Test report content" >> test/reports/test_report.txt
+
+
