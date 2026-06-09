@@ -40,6 +40,5 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/application
-            git pull origin main
-            docker compose up -d
+            cd /opt
+            mkdir -p test
